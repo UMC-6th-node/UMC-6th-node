@@ -1,11 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import SwaggerUi from 'swagger-ui-express';
 
 import { status } from './config/response.status.js';
 import { specs } from './config/swagger.config.js'
-import SwaggerUi from 'swagger-ui-express';
+
 import { userRouter } from './src/routes/user.route.js';
+import { restaurantRouter } from './src/routes/restaurant.route.js';
 
 dotenv.config();
 
@@ -29,5 +31,6 @@ app.listen(app.get('port'), () => {
 });
 
 app.use('/user', userRouter);
+app.use('/restaurant', restaurantRouter);
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));

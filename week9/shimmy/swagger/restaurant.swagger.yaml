@@ -1,0 +1,85 @@
+paths:
+  /restaurant:
+    post:
+      tags:
+        - Restaurant
+      summary: 식당 추가
+      parameters:
+      - name: restaurant
+        in: body
+        required: true
+        schema:
+          properties:
+            name:
+              type: string
+              description: 식당 이름
+              example: 스웨거
+            address:
+              type: string
+              description: 식당 주소
+              example: 서울 강남구 역삼동
+            regionId:
+              type: integer
+              description: 지역 ID
+              example: 1
+      responses:
+        '200':
+          description: 식당 추가 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                  "restaurantName": "성화해장국",
+                  "restaurantAddress": "인천광역시 미추홀구",
+                  "regionName": "인천"
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
