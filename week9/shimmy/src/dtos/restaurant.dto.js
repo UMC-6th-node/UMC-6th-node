@@ -6,6 +6,14 @@ export const restaurantResponseDto = (restaurant) => {
     };
 }
 
+export const reviewResponseDto = (review) => {
+    return {
+        "restaurantName": review[0].rest_name,
+        "body": review[0].body,
+        "score": review[0].score,
+    }
+}
+
 // // 프론트에 리턴해줄 response DTO 형식 정의
 // export const signinResponseDTO = (user, prefer) => {
 //     const preferFood = [];
