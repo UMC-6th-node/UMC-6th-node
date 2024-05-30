@@ -31,6 +31,6 @@ app.listen(app.get('port'), () => {
 });
 
 app.use('/user', userRouter);
-app.use('/restaurant', restaurantRouter);
+app.use('/restaurants', restaurantRouter);
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
