@@ -70,4 +70,20 @@ export const status = {
     code: 'ARTICLE4001',
     message: '게시글이 없습니다.',
   },
+
+  // email err
+  EMAIL_ALREADY_EXIST: {
+    status: StatusCodes.BAD_REQUEST,
+    isSuccess: false,
+    code: 'EMAIL4001',
+    message: '이메일이 이미 존재합니다.',
+  },
+
+  //sql err
+  PARAMETER_IS_WRONG: {
+    status: StatusCodes.BAD_REQUEST,
+    isSuccess: false,
+    code: 'DB4001',
+    message: 'DB오류입니다.',
+  },
 }

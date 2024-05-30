@@ -1,154 +1,111 @@
 ﻿CREATE TABLE `member` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`name`	varchar(20)	NULL,
 	`nickname`	varchar(20)	NOT NULL,
 	`gender`	tinyint(1)	NOT NULL,
 	`birthday`	datetime	NOT NULL,
 	`address`	text	NOT NULL,
 	`phone_no`	varchar(11)	NULL,
-	`point`	int	NOT NULL	DEFAULT 0,
+	`point`	    int	NOT NULL	DEFAULT 0,
+    `email`     varchar(200),
 	`login_method`	varchar(10)	NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
-	`status`	varchar(10)	NOT NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
+	`status`	varchar(10)	NOT NULL DEFAULT 'active',
 	`inactive_date`	datetime	NULL
 );
 
 CREATE TABLE `favorite_category` (
-	`id`	bigint	NOT NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`member_id`	bigint	NOT NULL,
 	`food_category_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `food_category` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`name`	varchar(20)	NOT NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6)
 );
 
 CREATE TABLE `restaurant` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`name`	varchar(30)	NOT NULL,
 	`address`	text	NOT NULL,
 	`status`	varchar(20)	NOT NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`food_category_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `menu` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`name`	varchar(30)	NULL,
 	`descript`	text	NULL,
 	`price`	int	NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`restaurant_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `review` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`review_text`	text	NULL,
 	`score`	int	NOT NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`member_id`	bigint	NOT NULL,
 	`restaurant_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `mission` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`price`	int	NOT NULL,
 	`point`	int	NOT NULL,
 	`location`	text	NULL,
 	`due_date`	datetime	NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`restaurant_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `my_mission` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`status`	tinyint(2)	NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`member_id`	bigint	NOT NULL,
 	`mission_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `review_image` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`image`	text	NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`review_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `inquiry` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`type`	varchar(10)	NULL,
 	`title`	text	NULL,
 	`content`	text	NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`status`	tinyint(2)	NULL,
 	`member_id`	bigint	NOT NULL
 );
 
 CREATE TABLE `inquiry_image` (
-	`id`	bigint	NOT NULL,
+	`id`	bigint	NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`image`	text	NULL,
-	`created_at`	datetime(6)	NOT NULL,
-	`updated_at`	datetime(6)	NULL,
+	`created_at`	datetime(6)	NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+	`updated_at`	datetime(6)	NULL ON UPDATE CURRENT_TIMESTAMP(6),
 	`status`	tinyint(2)	NULL,
 	`inquiry_id`	bigint	NOT NULL
-);
-
-ALTER TABLE `member` ADD CONSTRAINT `PK_MEMBER` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `favorite_category` ADD CONSTRAINT `PK_FAVORITE_CATEGORY` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `food_category` ADD CONSTRAINT `PK_FOOD_CATEGORY` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `restaurant` ADD CONSTRAINT `PK_RESTAURANT` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `menu` ADD CONSTRAINT `PK_MENU` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `review` ADD CONSTRAINT `PK_REVIEW` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `mission` ADD CONSTRAINT `PK_MISSION` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `my_mission` ADD CONSTRAINT `PK_MY_MISSION` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `review_image` ADD CONSTRAINT `PK_REVIEW_IMAGE` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `inquiry` ADD CONSTRAINT `PK_INQUIRY` PRIMARY KEY (
-	`id`
-);
-
-ALTER TABLE `inquiry_image` ADD CONSTRAINT `PK_INQUIRY_IMAGE` PRIMARY KEY (
-	`id`
 );
 
 ALTER TABLE `favorite_category` ADD CONSTRAINT `FK_member_TO_favorite_category_1` FOREIGN KEY (
