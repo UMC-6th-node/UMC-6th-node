@@ -14,11 +14,11 @@ export const reviewResponseDto = (review) => {
     }
 }
 
-// // 프론트에 리턴해줄 response DTO 형식 정의
-// export const signinResponseDTO = (user, prefer) => {
-//     const preferFood = [];
-//     for (let i = 0; i < prefer[0].length; i++) {
-//         preferFood.push(prefer[0][i].f_category_name);
-//     }
-//     return {"email": user[0].email, "name": user[0].user_name, "preferCategory": preferFood};
-// }
+export const missionResponseDto = (mission) => {
+    return {
+        "restaurantName": mission[0].rest_name,
+        "description": mission[0].description,
+        "reward": mission[0].reward,
+        "deadline": mission[0].deadline,
+    }
+}
