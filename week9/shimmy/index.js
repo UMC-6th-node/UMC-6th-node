@@ -8,6 +8,7 @@ import { specs } from './config/swagger.config.js'
 
 import { userRouter } from './src/routes/user.route.js';
 import { restaurantRouter } from './src/routes/restaurant.route.js';
+import { missionRouter } from './src/routes/mission.route.js';
 
 dotenv.config();
 
@@ -32,5 +33,6 @@ app.listen(app.get('port'), () => {
 
 app.use('/user', userRouter);
 app.use('/restaurants', restaurantRouter);
+app.use('/missions', missionRouter);
 
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));

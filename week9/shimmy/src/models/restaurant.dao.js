@@ -35,9 +35,10 @@ export const addRestaurantDao = async (data) => {
 export const getRestaurantDao = async (restaurantId) => {
     try {
         const conn = await pool.getConnection();
-        const [restaurant] = await pool.query(getRestaurantSql, restaurantId);
+        const restaurant = await pool.query(getRestaurantSql, restaurantId);
+
         conn.release();
-        return restaurant;
+        return restaurant[0];
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
